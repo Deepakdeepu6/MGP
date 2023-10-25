@@ -1,0 +1,31 @@
+.modifyButton{
+    cursor: pointer;
+}
+
+.ModifyTable{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width:100%;
+}
+
+.ModifyTableInside{
+    padding: 3%;
+    background-color: rgb(47, 48, 58);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    width:80%;
+}
+
+
+
+.detailsTable1{
+width:100%;
+margin: auto;
+}
+
+.buttons{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}

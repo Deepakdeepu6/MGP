@@ -1,0 +1,17 @@
+.App-header{
+  text-align: left;
+  font-size:xx-large;
+  font-weight: bolder;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color: #00868f;
+}
+.App-body {
+  background-color: #282c34;
+  min-height: 100vh;
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+

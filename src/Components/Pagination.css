@@ -1,0 +1,53 @@
+.pagination{
+    list-style: none;
+    display:flex;
+}
+.pagination li{
+    padding: 10px;
+    border:.5px solid white;
+    cursor:pointer;
+}
+
+.pagination li.active{
+    background-color: white;
+    color:black;
+}
+.pagination li.arrow{
+    padding: 5px;
+}
+
+.pagination li button{
+    border: none;
+    color:white;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 1px;
+    padding: 10px;
+
+}
+
+.pagination li button:hover{
+    background-color: white;
+    color:black;
+}
+
+nav{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    
+}
+nav ul li{
+    font-size: small;
+    font-weight: 500;
+}
+
+nav ul li button {
+    color:black;
+}
+
+nav ul li span{
+    height: 20px;
+    padding:10px;
+}
