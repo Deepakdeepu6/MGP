@@ -37,6 +37,9 @@ export const ModifyComponent = () => {
           try{
               await axios.post("http://localhost:8700/updates/",mgpDetails).then((response)=>{
                 console.log(response)
+               const string1 = "Updated successfully"
+                const compareValue1 = string1.localeCompare(response.data.message)
+
                 toast.success(response.data.message,{autoClose:1000})
 
 

@@ -14,16 +14,19 @@ const  Modify = () => {
     const [currentPage , setCurrentPage] = useState(1)
     const [postsPerPage , setPostsPerPage] = useState(5)
 
-
+    const [display,setDisplay] = useState(0)
     const [chosenVal , setChosenVal] = useState('all')
     const paginates = (pageNumber)=>setCurrentPage( pageNumber)
     useEffect(()=>{
         const displayAll = async(e) => {
+            console.log("Inside the modify function")
+
             try{
                 setLoading(true)
                 await axios.get("http://localhost:8700/modifies/"+chosenVal).then((response)=>{
                     if(response.data.hasOwnProperty('message')){
-                        toast.info("No such details",{autoClose:1000})
+                        setDisplay(2)
+                        toast.info("No such details")
                         setMGPDetails1([])
                     }
                     else
@@ -145,10 +148,12 @@ const  Modify = () => {
 
             <Posts posts={currentPosts} loading={loading}/>
         </div>
-        <Paginations currentPage={currentPage} postsPerPage={postsPerPage} totalPosts={mgpDetails1.length} paginate={paginates}/>
+        <Paginations type={1} currentPage={currentPage} postsPerPage={postsPerPage} totalPosts={mgpDetails1.length} paginate={paginates}/>
 
      </div>
-     <ToastContainer/>
+     {display==2 && 
+    <ToastContainer/>
+     }
     </div>
     
   )

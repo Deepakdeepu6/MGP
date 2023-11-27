@@ -24,16 +24,21 @@ import 'react-toastify/dist/ReactToastify.css';
         cleared:'no'
 
     })
+    const [display,setDisplay] = useState(0)
 
     const onclickAdd = async(e) =>{
         e.preventDefault();
         try{
             await axios.post("http://localhost:8700/add",mgpDetails).then((response)=>{
                 console.log("add response",response)
-                toast.success(response.data.message,{autoClose:1000})
+                setDisplay(1)
+                toast.success(response.data.message,{toastId: 'success1'})
                 let allInputs = document.querySelectorAll('input');
                 allInputs.forEach(singleInput => singleInput.value = '');                
                     //dispatch(addMgp(mgpDetails))
+                    setTimeout(() => {
+                        window.location.reload()
+                      }, 1000); 
             })
 
         }
@@ -83,7 +88,9 @@ const onChangeAdd = (e) =>{
         <button className = "btn btn-outline-success btn-lg mt-2" onClick={onclickAdd}>ADD</button>
 
         </div>
-        <ToastContainer/>
+        {display == 1 &&
+        <ToastContainer autoClose={400}/>
+        }
 
     </div>
 

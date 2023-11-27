@@ -37,7 +37,7 @@ const Compo= ()  => {
     <div className='compo'>
       <Tabs className='mb-4'>
         <Tab eventKey="add" title="ADD" onClick={onclickEventAdd}>
-          <Adds/>
+           <Adds/>
         </Tab>
         <Tab eventKey="modify" title="MODIFY" onClick={onclickEventModify}>
         <Modify />
