@@ -13,7 +13,7 @@ const mydb = mysql.createConnection({
 })
 
 app.post("/add",(req,res)=>{
-    console.log("inside",req.body)
+    console.log("insidse",req.body)
     const date = new Date(req.body.date)
     const q = "insert into mgp_details(serialNumber,item,quantity,toP,fromP,dates,cleared) values(?,?,?,?,?,?,?)";
     mydb.query(q,[req.body.serialNumber,req.body.item,req.body.quantity,req.body.to,req.body.from,req.body.date,req.body.cleared],(err,data)=>{
@@ -27,7 +27,7 @@ app.post("/add",(req,res)=>{
 
 
 app.get("/modifies/:chosenVal",(req,res)=>{
-    console.log("inside for modification",req.params.chosenVal)
+    console.log("insidse for modification",req.params.chosenVal)
     if(req.params.chosenVal == 'all'){
         const q = "select * from mgp_details order by dates desc";
         mydb.query(q,(err,data)=>{
@@ -43,7 +43,7 @@ app.get("/modifies/:chosenVal",(req,res)=>{
         })
     }
     else{
-        console.log("inside backend",req.params.chosenVal)
+        console.log("insside backend",req.params.chosenVal)
         const q = "select * from mgp_details where cleared = ? order by dates desc";
         mydb.query(q,[req.params.chosenVal],(err,data)=>{
             if(err) res.send({message:err})
@@ -63,7 +63,7 @@ app.get("/modifies/:chosenVal",(req,res)=>{
 
 
 app.get("/modify/:id",(req,res)=>{
-    console.log("inside",req.params.id)
+    console.log("insides",req.params.id)
     const q = "select * from mgp_details where id = ? order by dates desc" ;
     mydb.query(q,[req.params.id],(err,data)=>{
         if(err) res.send({err:err})
@@ -127,7 +127,19 @@ app.get("/history",(req,res)=>{
 
     })
 })
+app.delete("/delete/:id",(req,res)=>{
+    console.log("inside dle",req.params.id)
+    const deleteq = "delete from mgp_details where id = ?"
+    mydb.query(deleteq,[req.params.id],(err,data)=>{
+        if(err){
+         res.send({error:"err"})
+        }
+        else{
+        res.send({message:"Deleted successfully"})
 
+        }
+    })
+})
 
 
 

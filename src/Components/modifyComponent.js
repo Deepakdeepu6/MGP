@@ -31,6 +31,33 @@ export const ModifyComponent = () => {
     console.log(e.target.name,"+",e.target.value)
     setMGPDetails({...mgpDetails , [e.target.name] : e.target.value})
   }
+
+  const deleteFunction = ()=>{
+console.log("button is getting clicked")
+       const deletes = async(e)=>{
+        console.log("hellosssss")
+
+           try{
+            
+            await axios.delete("http://localhost:8700/delete/"+mgpDetails.id).then((response)=>{
+              console.log(response)
+              if (response.data.hasOwnProperty("message")) {
+                toast.success(response.data.message,{toastId: 'success1'})             
+                    //dispatch(addMgp(mgpDetails))
+                    setTimeout(() => {
+                        navigate('/')
+                      }, 1000);   
+              }
+            })
+
+           }
+           catch(err){
+            console.log("error encountered inside delete")
+           }
+       }
+       deletes()
+
+  }
   const updateFuntion = ()=>{
     console.log(mgpDetails)
         const updates = async(e)=>{
@@ -60,7 +87,7 @@ export const ModifyComponent = () => {
                   if(response.data[0]!=null)
                    setMGPDetails(response.data[0])
                   console.log(response.data[0])
-                  console.log(mgpDetails.dates)
+                  console.log("this is the date inside modify"+mgpDetails.dates)
                     if(mgpDetails.cleared == 'no' && mgpDetails.cleared!=' ')
                       setSecondChoice('yes')
                   else
@@ -109,7 +136,7 @@ export const ModifyComponent = () => {
             <td><input className="form-control" type="text" defaultValue={mgpDetails.serialNumber} onChange={updateDetails} placeholder=''  name="serialNumber" /></td>
             <td><input className="form-control" type="text" defaultValue={mgpDetails.item} placeholder=''  onChange={updateDetails} name="item" /></td>
             <td><input className="form-control" type="number" defaultValue={mgpDetails.quantity} placeholder='' onChange={updateDetails} name="quantity" /></td>
-            <td><input className="form-control" type="text" defaultValue={mgpDetails.dates} placeholder='' onChange={updateDetails} name="dates" /></td>
+            <td><input className="form-control" type="date" defaultValue={mgpDetails.dates} placeholder='' onChange={updateDetails} name="dates" /></td>
             <td><input className="form-control" type="text" defaultValue={mgpDetails.fromP} placeholder='' onChange={updateDetails} name="toP" /></td>
             <td><input className="form-control" type="text" defaultValue={mgpDetails.toP} placeholder='' onChange={updateDetails} name="fromP" /></td>
                 <td>
@@ -124,7 +151,9 @@ export const ModifyComponent = () => {
                 </tr>
         </table>
         <div className='button_classname mt-2'>
-        <button className='btn btn-outline-info btn-block btn-lg ' onClick={updateFuntion}>Update</button>
+        <button className='btn btn-outline-info btn-block btn-lg ' onClick={updateFuntion}>Update</button><span>  </span>
+        <button className='btn btn-outline-danger btn-block btn-lg ' onClick={deleteFunction}>Delete</button>
+
       </div>
     </div>
     <ToastContainer/>
